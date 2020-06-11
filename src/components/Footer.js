@@ -3,6 +3,7 @@ import React from 'react';
 export default class Footer extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = { seconds: 0 };
   }
 
@@ -24,7 +25,7 @@ export default class Footer extends React.Component {
     const { text } = this.props;
 
     return (
-      <a href="https://reactjs.org">
+      <a href="https://reactjs.org" style={{ color: 'white' }}>
         { text } { this.state.seconds }
       </a>
     );
