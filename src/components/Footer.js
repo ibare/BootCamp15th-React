@@ -1,16 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { INCERMENT_SECONDS } from '../actions';
 
-export default class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { seconds: 0 };
-  }
-
+class Footer extends React.Component {
   tick() {
-    this.setState({ 
-      seconds: this.state.seconds + 1 
-    });
+    this.props.incrementSeconds();
   }
 
   componentDidMount() {
@@ -22,12 +16,26 @@ export default class Footer extends React.Component {
   }
 
   render() {
-    const { text } = this.props;
+    const { text, seconds } = this.props;
 
     return (
       <a href="https://reactjs.org" style={{ color: 'white' }}>
-        { text } { this.state.seconds }
+        { text } { seconds }
       </a>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    seconds: state.seconds
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  incrementSeconds: () => dispatch({
+    type: INCERMENT_SECONDS
+  }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

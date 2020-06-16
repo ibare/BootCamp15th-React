@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import './index.css';
+import reducer from './reducers';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(function(state = {}, action) {
-  return { ...state };
-});
+const ActionLogger = store => dispatch => action => {
+  console.log('action ==> ', action.type);
+  dispatch(action);
+};
+
+const store = createStore(reducer, applyMiddleware(ActionLogger));
 
 ReactDOM.render(
   <React.StrictMode>

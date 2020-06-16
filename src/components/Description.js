@@ -1,12 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default function Description({ color = 'white', fontSize = '12pt', title }) {
+function Description({ color = 'white', fontSize = '12pt', title, seconds }) {
   return (
     <p style={ {
       color: color,
       fontSize: fontSize,
     } }>
-      { title }
+      { title } : { seconds }
     </p>
   );
 }
+
+export default connect(
+  state => ({
+    seconds: state.seconds
+  })
+)(Description);
+
+

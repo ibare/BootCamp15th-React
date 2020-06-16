@@ -18,7 +18,7 @@ export default function Header({ moreInfo }) {
           fontSize={ `${fontSize}px` }
           title="안녕하세요, 첫 React App입니다." />
       </div>  
-      <Footer text="React를 배워봅시다"/>
+      <Footer text="React를 배워봅시다 하하"/>
     </header>
   );
 }
